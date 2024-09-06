@@ -35,6 +35,8 @@
         position: relative;
         z-index: 10;
       }
+
+      /*-------------------------- LEFT SIDE--------------------------*/
       .left-side img {
         position: absolute;
         inset: 0;
@@ -104,34 +106,98 @@
       }
       .character-quote {
         position: absolute;
-        bottom: 5rem;
+        bottom: 6rem;
         left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
+
         font-size: 1.25rem;
         font-weight: bold;
+        z-index: 12;
       }
+      p + p {
+        margin-top: -1.5rem;
+      }
+      p.quote {
+        font-size: 80px;
+        margin-bottom: -3.1rem;
+        margin-left: -3px;
+      }
+      /*-------------------------- RIGHT SIDE--------------------------*/
       .right-side {
         padding: 1rem;
         overflow-y: auto;
       }
       .header {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         align-items: center;
         margin-bottom: 1rem;
+        gap: 10px;
+      }
+      .taoqi-logo {
+        display: flex;
+        align-items: center;
+        background-color: #f4b4cc;
+        border-radius: 2rem;
+        padding: 0.25rem 2rem 0.25rem 0.25rem;
+      }
+      .taoqi-logo img {
+        width: 32px;
+        height: 32px;
+        background-color: white;
+        border-radius: 50%;
+        margin-right: -0.6rem;
+        position: relative;
+        left: 20px;
+      }
+      .character-select {
+        font-size: 1rem;
+
+        padding-left: 10px;
+      }
+
+      .text-2xl {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      .header-top {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+      .search-container {
+        display: flex;
+        align-items: center;
+        background-color: #f4b4cc;
+
+        border: 2px solid white;
+        border-radius: 2rem;
+        padding: 0.25rem;
+        flex-grow: 1;
+      }
+      .search-icon-container {
+        background-color: #000;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 0.5rem;
       }
       .search-bar {
-        position: relative;
-        margin-bottom: 1rem;
+        flex-grow: 1;
       }
+
       .search-bar input {
         width: 100%;
-        padding: 0.5rem 2.5rem;
-        background-color: #f687b3;
+        padding: 0.25rem;
+        background-color: transparent;
         border: none;
-        border-radius: 0.25rem;
         color: white;
+        font-size: 1rem;
       }
       .search-bar input::placeholder {
         color: rgba(255, 255, 255, 0.7);
@@ -205,7 +271,8 @@
           <button class="nav-button"><i data-lucide="book"></i></button>
         </div>
         <div class="character-quote">
-          <p>"PHEW... ALL SET!</p>
+          <p class="quote">&#8220;</p>
+          <p>PHEW... ALL SET!</p>
           <p>TIME FOR A LITTLE BREAK."</p>
         </div>
         <div class="character-name move1">TAOQI</div>
@@ -216,31 +283,23 @@
       </div>
       <div class="right-side">
         <div class="header">
-          <div class="text-2xl font-bold">咎潮</div>
-          <div style="display: flex; align-items: center; gap: 0.5rem">
-            <i data-lucide="bell"></i>
-            <div
-              style="
-                width: 2rem;
-                height: 2rem;
-                background-color: #ccc;
-                border-radius: 50%;
-              "
-            ></div>
+          <div class="taoqi-logo">
+            <span class="character-select">Taoqi</span>
+            <img src="/img/Taoqi_Icon.png" alt="Taoqi Logo" />
           </div>
-        </div>
+          <div class="search-container">
+            <div class="search-icon-container">
+              <i
+                data-lucide="search"
+                style="color: white; width: 20px; height: 20px"
+              ></i>
+            </div>
+            <div class="search-bar">
+              <input type="text" placeholder="Search..." />
+            </div>
+          </div>
 
-        <div class="search-bar">
-          <input type="text" placeholder="Search..." />
-          <i
-            data-lucide="search"
-            style="
-              position: absolute;
-              left: 0.75rem;
-              top: 50%;
-              transform: translateY(-50%);
-            "
-          ></i>
+          <div class="text-2xl">咎潮</div>
         </div>
 
         <div class="buttons">
