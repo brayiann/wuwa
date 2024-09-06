@@ -3,214 +3,300 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Taoqi Page</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/lucide-static/dist/lucide.css"
-    />
+    <title>Taoqi Character Page</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
     <style>
-      body {
-        background-color: #f472b6;
-        min-height: 100vh;
+      body,
+      html {
         margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: Arial, sans-serif;
         color: white;
-        font-family: sans-serif;
+        overflow: hidden;
       }
-
-      header {
+      .container {
+        height: 100vh;
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 16px;
+        position: relative;
+        background-color: #ed64a6;
       }
-
-      header .title {
-        font-size: 2.5rem;
-        font-weight: bold;
+      .background {
+        position: absolute;
+        inset: 0;
+        background-image: url("/img/aaaaaaaaaaaa-Photoroom.png");
+        background-size: cover;
+        background-position: center;
+        z-index: 0;
       }
-
-      header .user-info {
-        display: flex;
-        align-items: center;
-        gap: 8px;
+      .left-side,
+      .right-side {
+        width: 50%;
+        position: relative;
+        z-index: 10;
       }
-
-      header .user-info span {
-        font-size: 0.75rem;
+      .left-side img {
+        position: absolute;
+        inset: 0;
+        left: 120px;
+        height: 100%;
+        object-fit: cover;
+        z-index: 10;
       }
-
-      main {
+      .nav-buttons {
+        position: absolute;
+        bottom: 1rem;
+        left: 1rem;
         display: flex;
         flex-direction: column;
-        padding: 16px;
+        gap: 1rem;
       }
-
-      @media (min-width: 768px) {
-        main {
-          flex-direction: row;
-        }
+      .nav-button {
+        background-color: rgba(237, 100, 166, 0.5);
+        border: none;
+        border-radius: 50%;
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
       }
-
-      .character-image {
-        flex: 1;
-        padding: 16px;
+      .nav-button:hover {
+        background-color: rgba(237, 100, 166, 0.8);
       }
-
-      .character-info {
-        flex: 1;
-        padding: 16px;
+      .character-name.move1 {
+        color: transparent;
+        -webkit-text-stroke: 2px white;
+        z-index: 1;
+        top: 10%;
       }
-
-      .character-info h1 {
-        font-size: 4rem;
+      .character-name.move {
+        color: transparent;
+        -webkit-text-stroke: 2px white;
+        z-index: 1;
+        top: 30%;
+      }
+      .character-name.move2 {
+        color: transparent;
+        -webkit-text-stroke: 2px white;
+        z-index: 1;
+        top: 70%;
+      }
+      .character-name.move3 {
+        color: transparent;
+        -webkit-text-stroke: 2px white;
+        z-index: 1;
+        top: 90%;
+      }
+      .character-name {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 15rem;
         font-weight: bold;
-        margin-bottom: 16px;
+        color: transparent;
+        -webkit-text-stroke: 2px rgba(238, 113, 174, 0.8);
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        letter-spacing: 0.1em;
+        z-index: 11;
       }
-
-      .tags {
-        display: flex;
-        gap: 16px;
-        margin-bottom: 16px;
+      .character-quote {
+        position: absolute;
+        bottom: 5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        font-size: 1.25rem;
+        font-weight: bold;
       }
-
-      .tag {
-        background-color: #be185d;
-        border-radius: 9999px;
-        padding: 8px 16px;
+      .right-side {
+        padding: 1rem;
+        overflow-y: auto;
       }
-
-      .rarity {
-        display: flex;
-        gap: 4px;
-        margin-bottom: 16px;
-      }
-
-      .rarity span {
-        font-size: 1.5rem;
-      }
-
-      .play-container,
-      .appearance-container {
-        background-color: #ec4899;
-        border-radius: 8px;
-        padding: 16px;
-        margin-bottom: 16px;
-      }
-
-      .play-buttons {
+      .header {
         display: flex;
         justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
       }
-
-      nav {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: #ec4899;
-        padding: 16px;
+      .search-bar {
+        position: relative;
+        margin-bottom: 1rem;
       }
-
-      nav .icon-container {
+      .search-bar input {
+        width: 100%;
+        padding: 0.5rem 2.5rem;
+        background-color: #f687b3;
+        border: none;
+        border-radius: 0.25rem;
+        color: white;
+      }
+      .search-bar input::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .buttons {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      .button {
+        background-color: #ed64a6;
+        color: white;
+        border: none;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        cursor: pointer;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
+        align-items: center;
       }
-
-      .quote {
-        position: absolute;
-        bottom: 80px;
-        left: 16px;
-        background-color: rgba(190, 24, 93, 0.8);
-        padding: 8px;
-        border-radius: 8px;
+      .button span {
+        width: 1.5rem;
+        height: 1.5rem;
+        background-color: #f687b3;
+        border-radius: 50%;
+        display: inline-block;
       }
-
-      .quote p {
-        font-size: 0.875rem;
-        margin: 0;
+      .rarity {
+        text-align: right;
+        margin-bottom: 1rem;
+      }
+      .video-section,
+      .appearance-section {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+      .video-placeholder {
+        aspect-ratio: 16 / 9;
+        background-color: #e2e8f0;
+        border-radius: 0.25rem;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .video-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+      }
+      .appearance-section {
+        color: black;
+      }
+      .appearance-section h2 {
+        margin-top: 0;
       }
     </style>
   </head>
   <body>
-    <!-- Header -->
-    <header>
-      <div class="title">咎潮</div>
-      <div class="user-info">
-        <i class="lucide lucide-bell" style="width: 24px; height: 24px"></i>
-      </div>
-    </header>
-
-    <!-- Main content -->
-    <main>
-      <!-- Left column - Character image -->
-      <div class="character-image">
-        <img
-          src="/placeholder.svg?height=400&width=300"
-          alt="Taoqi character"
-          style="width: 100%; height: auto"
-        />
-      </div>
-
-      <!-- Right column - Character info -->
-      <div class="character-info">
-        <h1>TAOQI</h1>
-        <div class="tags">
-          <div class="tag">HAVOC</div>
-          <div class="tag" style="background-color: #1f2937">BROADBLADE</div>
+    <div class="container">
+      <div class="background"></div>
+      <div class="left-side">
+        <img src="/img/taoqui.png" alt="Taoqi" />
+        <div class="nav-buttons">
+          <button class="nav-button"><i data-lucide="home"></i></button>
+          <button class="nav-button"><i data-lucide="pen"></i></button>
+          <button class="nav-button"><i data-lucide="mic"></i></button>
+          <button class="nav-button"><i data-lucide="book"></i></button>
         </div>
-        <div class="rarity">
-          <span>★</span>
-          <span>★</span>
-          <span>★</span>
-          <span>★</span>
-          <span style="margin-left: 8px">RARITY</span>
+        <div class="character-quote">
+          <p>"PHEW... ALL SET!</p>
+          <p>TIME FOR A LITTLE BREAK."</p>
         </div>
-        <div class="play-container">
-          <i
-            class="lucide lucide-play"
-            style="
-              width: 48px;
-              height: 48px;
-              display: block;
-              margin: 0 auto 8px;
-            "
-          ></i>
-          <div class="play-buttons">
-            <i class="lucide lucide-play" style="width: 32px; height: 32px"></i>
-            <i class="lucide lucide-play" style="width: 32px; height: 32px"></i>
-            <i class="lucide lucide-play" style="width: 32px; height: 32px"></i>
+        <div class="character-name move1">TAOQI</div>
+        <div class="character-name move">TAOQI</div>
+        <div class="character-name">TAOQI</div>
+        <div class="character-name move2">TAOQI</div>
+        <div class="character-name move3">TAOQI</div>
+      </div>
+      <div class="right-side">
+        <div class="header">
+          <div class="text-2xl font-bold">咎潮</div>
+          <div style="display: flex; align-items: center; gap: 0.5rem">
+            <i data-lucide="bell"></i>
+            <div
+              style="
+                width: 2rem;
+                height: 2rem;
+                background-color: #ccc;
+                border-radius: 50%;
+              "
+            ></div>
           </div>
         </div>
-        <div class="appearance-container">
-          <h2 style="font-size: 1.25rem; font-weight: bold; margin-bottom: 8px">
-            APPEARANCE
-          </h2>
+
+        <div class="search-bar">
+          <input type="text" placeholder="Search..." />
+          <i
+            data-lucide="search"
+            style="
+              position: absolute;
+              left: 0.75rem;
+              top: 50%;
+              transform: translateY(-50%);
+            "
+          ></i>
+        </div>
+
+        <div class="buttons">
+          <button class="button">HAVOC <span></span></button>
+          <button class="button">BROADBLADE <span></span></button>
+        </div>
+
+        <div class="rarity">
+          <span style="font-size: 1.25rem">✦✦✦✦</span>
+          <div>RARITY</div>
+        </div>
+
+        <div class="video-section">
+          <div class="video-placeholder">
+            <i
+              data-lucide="play-circle"
+              style="width: 3rem; height: 3rem; color: #ed64a6"
+            ></i>
+          </div>
+          <div class="video-grid">
+            <div class="video-placeholder">
+              <i
+                data-lucide="play-circle"
+                style="width: 1.5rem; height: 1.5rem; color: #ed64a6"
+              ></i>
+            </div>
+            <div class="video-placeholder">
+              <i
+                data-lucide="play-circle"
+                style="width: 1.5rem; height: 1.5rem; color: #ed64a6"
+              ></i>
+            </div>
+            <div class="video-placeholder">
+              <i
+                data-lucide="play-circle"
+                style="width: 1.5rem; height: 1.5rem; color: #ed64a6"
+              ></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="appearance-section">
+          <h2 style="font-weight: bold; margin-bottom: 0.5rem">APPEARANCE</h2>
           <p style="font-size: 0.875rem">
             Taoqi is a young woman with pinkish-violet eyes and pink hair that
-            is short at the back with shoulder-length strands in front. She has
-            a golden ornament arc around them at the middle. Her bangs are swept
-            to her left, covering her left eye, with a black, cord-tied pink
-            ornament that covers her left ear...
+            is short at the back and shoulder length strands in front while
+            having a golden ornament arc around them at the middle. Her bangs
+            are swept to her left, covering her left eye, while having a black,
+            cord-tied pink ornament that covers her right ear. Two tassels
+            hanging...
           </p>
         </div>
       </div>
-    </main>
-
-    <!-- Navigation -->
-    <nav>
-      <div class="icon-container">
-        <i class="lucide lucide-home" style="width: 24px; height: 24px"></i>
-        <i class="lucide lucide-search" style="width: 24px; height: 24px"></i>
-        <i class="lucide lucide-mic" style="width: 24px; height: 24px"></i>
-        <i class="lucide lucide-book" style="width: 24px; height: 24px"></i>
-      </div>
-    </nav>
-
-    <!-- Quote overlay -->
-    <div class="quote">
-      <p>"PHEW... ALL SET! TIME FOR A LITTLE BREAK."</p>
     </div>
-
-    <script src="https://unpkg.com/lucide-static"></script>
+    <script>
+      lucide.createIcons();
+    </script>
   </body>
 </html>
