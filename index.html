@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Taoqi Character Page</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
       body,
       html {
@@ -189,15 +189,18 @@
       .search-icon-container {
         background-color: #000;
         border-radius: 50%;
-        width: 32px;
-        height: 32px;
+        width: 50px;
+        height: 50px;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: 0.5rem;
+        position: absolute;
+        border: 3px solid white;
+        left: 16%;
       }
       .search-bar {
         flex-grow: 1;
+        padding-left: 45px;
       }
 
       .search-bar input {
@@ -221,23 +224,23 @@
         display: flex;
         align-items: center;
         color: #000;
-        font-size: 22px;
+        font-size: 25px;
         font-weight: bold;
       }
       .havoc {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
       }
       .buttons-broadblade {
         display: flex;
         align-items: center;
         color: #000;
-        font-size: 22px;
+        font-size: 25px;
         font-weight: bold;
       }
       .broadblade {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
       }
       .button {
         background-color: #ed64a6;
@@ -260,6 +263,20 @@
       .rarity {
         text-align: right;
         margin-bottom: 1rem;
+        padding: 10px 65px 0px 0px;
+        color: black;
+      }
+      .stars {
+        display: inline-block;
+        font-size: 1rem;
+        padding-top: 2px;
+        transform: scale(3.5, 4);
+      }
+      .text-rarity {
+        padding: 10px 5px 10px 0px;
+        font-weight: bold;
+        text-align: right;
+        color: black;
       }
       .video-section,
       .appearance-section {
@@ -322,15 +339,18 @@
             <div class="search-icon-container">
               <i
                 data-lucide="search"
-                style="color: white; width: 20px; height: 20px"
+                style="
+                  color: white;
+                  width: 30px;
+                  height: 30px;
+                  stroke-width: 3px;
+                "
               ></i>
             </div>
             <div class="search-bar">
               <input type="text" placeholder="Search..." />
             </div>
           </div>
-
-          <div class="text-2xl">咎潮</div>
         </div>
         <div class="container-attribute">
           <div class="buttons-havoc">
@@ -348,9 +368,9 @@
         </div>
 
         <div class="rarity">
-          <span style="font-size: 1.25rem">✦✦✦✦</span>
-          <div>RARITY</div>
+          <span class="stars">✦✦✦✦</span>
         </div>
+        <div class="text-rarity">RARITY</div>
 
         <div class="video-section">
           <div class="video-placeholder">
