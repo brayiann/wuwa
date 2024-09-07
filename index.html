@@ -202,11 +202,33 @@
       .search-bar input::placeholder {
         color: rgba(255, 255, 255, 0.7);
       }
-      .buttons {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-        margin-bottom: 1rem;
+
+      .container-attribute {
+        display: flex;
+        justify-content: flex-end;
+        gap: 4rem;
+      }
+      .buttons-havoc {
+        display: flex;
+        align-items: center;
+        color: #000;
+        font-size: 22px;
+        font-weight: bold;
+      }
+      .havoc {
+        width: 50px;
+        height: 50px;
+      }
+      .buttons-broadblade {
+        display: flex;
+        align-items: center;
+        color: #000;
+        font-size: 22px;
+        font-weight: bold;
+      }
+      .broadblade {
+        width: 50px;
+        height: 50px;
       }
       .button {
         background-color: #ed64a6;
@@ -301,10 +323,19 @@
 
           <div class="text-2xl">咎潮</div>
         </div>
-
-        <div class="buttons">
-          <button class="button">HAVOC <span></span></button>
-          <button class="button">BROADBLADE <span></span></button>
+        <div class="container-attribute">
+          <div class="buttons-havoc">
+            <span>HAVOC </span>
+            <img class="havoc" src="/img/Havoc.png" alt="Havoc" />
+          </div>
+          <div class="buttons-broadblade">
+            <span>BROADBLADE </span>
+            <img
+              class="broadblade"
+              src="/img/Broadblade.png"
+              alt="Broadblade"
+            />
+          </div>
         </div>
 
         <div class="rarity">
